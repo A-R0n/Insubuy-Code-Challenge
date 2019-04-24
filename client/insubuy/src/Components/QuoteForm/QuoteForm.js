@@ -1,18 +1,19 @@
 import React from 'react';
-import { validate } from '@babel/types';
 
 function QuoteForm() {
+    var miney = 0;
 	function validateForm() {
 		var missing = ['The following fields are incomplete:'];
 		for (let i = 0; i <= 6; i++) {
-			if (document.forms['QuoteForm'][i].value.length>0) {
-				continue;
+			if (document.forms['QuoteForm']['start'].value > document.forms['QuoteForm']['end'].value) {
+				miney = document.forms['QuoteForm']['start'].value;
             }
             else {
                 missing += document.forms['QuoteForm'][i];
             }
+            console.log('hi')
 		}
-		alert(missing);  
+		console.log(missing);  
     }
 
     var todayTime = new Date();
@@ -27,18 +28,18 @@ function QuoteForm() {
 		// Input 'name' supported in Chrome 1.0, IE 2.0, FireFox 1.0, Safari 1.0, and Opera 1.0
 		<form name="QuoteForm" action="/api" onSubmit={(e) => validateForm(e)}>
 			<p>Start Date:<input type="date" name="start" min={rightNow}  /></p>
-			<p>End Date:<input type="date" name="end" /></p>
+			<p>End Date:<input type="date" name="end" min={miney} /></p>
 			<p>Policy max:
-				<select name="PolicyMax" name="policy">
+				<select name="PolicyMax" >
 					<option value={50}>50,000</option>
 					<option value={100}>100,000</option>
 					<option value={250}>250,000</option>
 					<option value={500}>500,000</option>
 				</select>
 			</p>
-			<p>Citizenship:<input type="text" name="citizenship" pattern="[A-Za-z || s]{2,}" /></p>
-			<p>Age/Birthday:<input type="date" name="bday" max={rightNow} /></p>
-			<p>Mailing State:<input type="text" name="state" pattern="[A-Za-z || s]{2,}" /></p>
+			<p>Citizenship:<input type="text" name="citizenship" pattern="[A-Za-z || s]{2,}" title="No numbers or special characters" /></p>
+			<p>Age/Birthday:<input type="date" name="bday" alt='age' max={rightNow} /></p>
+			<p>Mailing State:<input type="text" name="state" pattern="[A-Za-z || s]{2,}" title="No numbers or special characters" /></p>
 			<input type="submit" value="Submit" />
 			<input type="reset" value="Reset" />
 		</form>
