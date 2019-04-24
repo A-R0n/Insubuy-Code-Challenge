@@ -33,9 +33,6 @@ export default class QuoteForm extends Component {
         var year = todayTime.getFullYear();
         var rightNow = year + '-' + 0 + month + '-' + day;
         return (
-            // Input type: 'date' responsive for Chrome 20 and Opera 11,
-            // but not supported in Safari or Internet Explorer 11 and earlier versions.
-            // Input 'name' supported in Chrome 1.0, IE 2.0, FireFox 1.0, Safari 1.0, and Opera 1.0
             <form name="QuoteForm" action="/api" onSubmit={(e) => this.validateForm(e)}>
                 <p>Start Date:<input type="date" name="start" min={rightNow} onChange={e => this.startDateCreated(e.target.value)} /></p>
                 <p>End Date:<input type="date" name="end" min={this.state.val} /></p>
