@@ -9,22 +9,24 @@ export default class QuoteForm extends Component {
         }
     }
     validateForm = () => {
-        var miney;
 		var missing = ['The following fields are incomplete:'];
 		for (let i = 0; i <= 6; i++) {
-			if (document.forms['QuoteForm']['start'].value > document.forms['QuoteForm']['end'].value) {
-				miney = document.forms['QuoteForm']['start'].value;
+			if (document.forms['QuoteForm']['end'].value > document.forms['QuoteForm']['start'].value) {
+                continue;
+                // if this reaches here make fetch call to db
+                // take values from db create view in Results
             }
             else {
-                missing += document.forms['QuoteForm'][i];
+                console.log('end is not greater than start')
             }
-            console.log('hi', document.forms['QuoteForm']['start'].value)
+            
 		}
 		console.log(missing);  
     }
 
-    startDateCreated = () => {
-        this.setState({val: this.state.val})
+    startDateCreated = (start) => {
+        this.setState({val: start})
+        console.log(this.state.val)
     }
     render(){
     var todayTime = new Date();
@@ -38,7 +40,7 @@ export default class QuoteForm extends Component {
             // Input 'name' supported in Chrome 1.0, IE 2.0, FireFox 1.0, Safari 1.0, and Opera 1.0
             <form name="QuoteForm" action="/api" onSubmit={(e) => this.validateForm(e)}>
                 <p>Start Date:<input type="date" name="start" min={rightNow} onChange={e => this.startDateCreated(e.target.value)} /></p>
-                <p >End Date:<input type="date" name="end" min={this.state.val} /></p>
+                <p>End Date:<input type="date" name="end" min={this.state.val} /></p>
                 <p>Policy max:
                     <select name="PolicyMax" >
                         <option value={50}>50,000</option>
