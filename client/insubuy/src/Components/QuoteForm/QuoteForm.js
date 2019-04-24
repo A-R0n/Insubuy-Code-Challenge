@@ -9,6 +9,7 @@ export default class QuoteForm extends Component {
         }
     }
     validateForm = (e) => {
+        e.preventDefault();
 		for (let i = 0; i <= 6; i++) {
             var x = document.forms["QuoteForm"][i].value;
 			if (document.forms['QuoteForm']['end'].value == document.forms['QuoteForm']['start'].value) {
@@ -19,7 +20,6 @@ export default class QuoteForm extends Component {
                 continue;
             } 
         }
-        e.preventDefault();
     }
 
     startDateCreated = (start) => {
