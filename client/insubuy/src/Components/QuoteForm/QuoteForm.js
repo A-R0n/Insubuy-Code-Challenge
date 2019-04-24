@@ -8,20 +8,18 @@ export default class QuoteForm extends Component {
             val: 0
         }
     }
-    validateForm = () => {
-		var missing = ['The following fields are incomplete:'];
+    validateForm = (e) => {
 		for (let i = 0; i <= 6; i++) {
-			if (document.forms['QuoteForm']['end'].value > document.forms['QuoteForm']['start'].value) {
+            var x = document.forms["QuoteForm"][i].value;
+			if (document.forms['QuoteForm']['end'].value == document.forms['QuoteForm']['start'].value) {
+                return false;
+            }
+            if (x === "") {
+                alert(document.forms["QuoteForm"][i].name + " must be filled out");
                 continue;
-                // if this reaches here make fetch call to db
-                // take values from db create view in Results
-            }
-            else {
-                console.log('end is not greater than start')
-            }
-            
-		}
-		console.log(missing);  
+            } 
+        }
+        e.preventDefault();
     }
 
     startDateCreated = (start) => {
