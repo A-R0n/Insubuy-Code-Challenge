@@ -1,7 +1,7 @@
 import React from 'react';
 
 function QuoteForm() {
-    var miney = 0;
+    var miney;
 	function validateForm() {
 		var missing = ['The following fields are incomplete:'];
 		for (let i = 0; i <= 6; i++) {
@@ -27,7 +27,7 @@ function QuoteForm() {
 		// but not supported in Safari or Internet Explorer 11 and earlier versions.
 		// Input 'name' supported in Chrome 1.0, IE 2.0, FireFox 1.0, Safari 1.0, and Opera 1.0
 		<form name="QuoteForm" action="/api" onSubmit={(e) => validateForm(e)}>
-			<p>Start Date:<input type="date" name="start" min={rightNow}  /></p>
+			<p>Start Date:<input type="date" name="start" min={rightNow} /></p>
 			<p>End Date:<input type="date" name="end" min={miney} /></p>
 			<p>Policy max:
 				<select name="PolicyMax" >
@@ -37,9 +37,9 @@ function QuoteForm() {
 					<option value={500}>500,000</option>
 				</select>
 			</p>
-			<p>Citizenship:<input type="text" name="citizenship" pattern="[A-Za-z || s]{2,}" title="No numbers or special characters" /></p>
-			<p>Age/Birthday:<input type="date" name="bday" alt='age' max={rightNow} /></p>
-			<p>Mailing State:<input type="text" name="state" pattern="[A-Za-z || s]{2,}" title="No numbers or special characters" /></p>
+			<p>Citizenship:<input type="text" name="citizenship" pattern="[A-Za-z | s]{2,}" title="No numbers or special characters" /></p>
+			<p>Age/Year of Birth:<input type="text" name="bday" alt='age' pattern='[1-9][0-9]?$|^100$ | ^1919|192[0-9]\d|20[0-9]\d|201[0-9]$' title="Field needs to be your age in years or your year of birth" /></p>
+			<p>Mailing State:<input type="text" name="state" pattern="[A-Za-z | s]{2,}" title="No numbers or special characters" /></p>
 			<input type="submit" value="Submit" />
 			<input type="reset" value="Reset" />
 		</form>
