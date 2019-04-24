@@ -5,11 +5,11 @@ export default class QuoteForm extends Component {
         super();
 
         this.state = {
-            val: 0
+            startDate: 0,
+            endDate: 0
         }
     }
     validateForm = (e) => {
-        e.preventDefault();
 		for (let i = 0; i <= 6; i++) {
             var x = document.forms["QuoteForm"][i].value;
 			if (document.forms['QuoteForm']['end'].value == document.forms['QuoteForm']['start'].value) {
@@ -23,8 +23,11 @@ export default class QuoteForm extends Component {
     }
 
     startDateCreated = (start) => {
-        this.setState({val: start})
-        console.log(this.state.val)
+        this.setState({startDate: start})
+    }
+
+    endDateCreated = (end) => {
+        this.setState({endDate: end})
     }
     render(){
     var todayTime = new Date();
@@ -33,9 +36,10 @@ export default class QuoteForm extends Component {
         var year = todayTime.getFullYear();
         var rightNow = year + '-' + 0 + month + '-' + day;
         return (
-            <form name="QuoteForm" action="/api" onSubmit={(e) => this.validateForm(e)}>
+            <form name="QuoteForm" action="/" onSubmit={(e) => this.validateForm(e)} method='post'>
                 <p>Start Date:<input type="date" name="start" min={rightNow} onChange={e => this.startDateCreated(e.target.value)} /></p>
-                <p>End Date:<input type="date" name="end" min={this.state.val} /></p>
+                <p>End Date:<input type="date" name="end" min={this.state.startDate} onChange={e => this.endDateCreated(e.target.value)}/></p>
+                <p>Citizenship:<input type="text" name="citizenship" pattern="[A-Za-z | s]{2,}" title="No numbers or special characters" /></p>
                 <p>Policy max:
                     <select name="PolicyMax" >
                         <option value={50}>50,000</option>
@@ -44,7 +48,6 @@ export default class QuoteForm extends Component {
                         <option value={500}>500,000</option>
                     </select>
                 </p>
-                <p>Citizenship:<input type="text" name="citizenship" pattern="[A-Za-z | s]{2,}" title="No numbers or special characters" /></p>
                 <p>Age/Year of Birth:<input type="text" name="bday" alt='age' pattern='[1-9][0-9]?$|^100$ | ^1919|192[0-9]\d|20[0-9]\d|201[0-9]$' title="Field needs to be your age in years or your year of birth" /></p>
                 <p>Mailing State:<input type="text" name="state" pattern="[A-Za-z | s]{2,}" title="No numbers or special characters" /></p>
                 <input type="submit" value="Submit" />
