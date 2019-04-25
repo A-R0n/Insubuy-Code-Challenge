@@ -1,0 +1,45 @@
+.List {
+    width: 90%;
+    margin: auto;
+}
+
+.resultsForm {
+    color: black;
+}
+
+.sort {
+    width: 300px;
+    display: flex;
+    justify-content: space-evenly;
+    font-weight: bold;
+    font-size: 1.25em;
+}
+
+
+#eachList {
+    background: rgb(229, 229, 241);
+    display: flex;
+    border-bottom: 2px solid black;
+    height: 70px;
+}
+
+#eachName {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+    background: rgb(252, 221, 226);
+    font-size: 1.5em;
+}
+
+#firstLine{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#secondLine {
+    display: flex;
+    margin: auto;
+}
+
