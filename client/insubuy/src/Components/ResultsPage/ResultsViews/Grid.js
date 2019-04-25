@@ -6,7 +6,7 @@ export default class Grid extends Component {
     }
     render(){
         return (
-            <div className='Grid'></div>
+            <div className='Grid'>Grid</div>
         );
     }	
 }
