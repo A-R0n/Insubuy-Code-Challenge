@@ -36,7 +36,7 @@ export default class QuoteForm extends Component {
         var year = todayTime.getFullYear();
         var rightNow = year + '-' + 0 + month + '-' + day;
         return (
-            <form name="QuoteForm" action="/" onSubmit={(e) => this.validateForm(e)} method='post'>
+            <form name="QuoteForm" action="http://localhost:8080/quotes/" onSubmit={(e) => this.validateForm(e)} method='post'>
                 <p>Start Date:<input type="date" name="start" min={rightNow} onChange={e => this.startDateCreated(e.target.value)} /></p>
                 <p>End Date:<input type="date" name="end" min={this.state.startDate} onChange={e => this.endDateCreated(e.target.value)}/></p>
                 <p>Citizenship:<input type="text" name="citizenship" pattern="[A-Za-z | s]{2,}" title="No numbers or special characters" /></p>
